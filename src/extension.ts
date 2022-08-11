@@ -4,7 +4,7 @@ import ts = require("typescript");
 import {
   getPackageInfoFromNPMRegistry,
   buildPackageName,
-  buildCodeLens,
+  buildLinks,
   openLink,
   clearUrl,
 } from "./npminfolens";
@@ -24,7 +24,7 @@ export function activate(context: vscode.ExtensionContext) {
           .map((node) => buildPackageName(node, document))
           .filter(({ packageName }) => packageName !== "")
           .map(({ importLineText, packageName }) =>
-            buildCodeLens(importLineText, packageName)
+            buildLinks(importLineText, packageName)
           )
           .flat();
       },
@@ -33,7 +33,9 @@ export function activate(context: vscode.ExtensionContext) {
 
   let regCommandDisposable = vscode.commands.registerCommand(
     "openPackageDetails",
-    async (...args: [string, "npm" | "repository" | "website"]) => {
+    async (
+      ...args: [string, "npm" | "repository" | "website" | "bundlephobia"]
+    ) => {
       const [packageName, destination] = args;
       if (destination === "npm") {
         openLink(
@@ -47,8 +49,10 @@ export function activate(context: vscode.ExtensionContext) {
         if (!packageDetails) {
           return;
         }
-		
-        openLink(vscode.Uri.parse(clearUrl((packageDetails.repository.url as string))));
+
+        openLink(
+          vscode.Uri.parse(clearUrl(packageDetails.repository.url as string))
+        );
       }
 
       if (destination === "website") {
@@ -58,6 +62,12 @@ export function activate(context: vscode.ExtensionContext) {
         }
 
         openLink(vscode.Uri.parse(clearUrl(packageDetails.homepage as string)));
+      }
+
+      if (destination === "bundlephobia") {
+        openLink(
+          vscode.Uri.parse(`https://bundlephobia.com/package/${packageName}`)
+        );
       }
 
       vscode.window.showInformationMessage("Check your browser");

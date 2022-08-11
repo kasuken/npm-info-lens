@@ -66,7 +66,7 @@ export function buildPackageName(node: ts.Node, document: vscode.TextDocument) {
   };
 }
 
-export function buildCodeLens(
+export function buildLinks(
   importTextLine: vscode.TextLine,
   packageName: string
 ) {
@@ -86,6 +86,11 @@ export function buildCodeLens(
       title: `Website`,
       command: "openPackageDetails",
       arguments: [packageName, "website"],
+    }),
+    new vscode.CodeLens(codeLensRange, {
+      title: `BundlePhobia`,
+      command: "openPackageDetails",
+      arguments: [packageName, "bundlephobia"],
     }),
   ];
 }

@@ -12,9 +12,14 @@ a Visual Studio Code extension that shows additional info for NPM packages direc
 - Link to NPM Registry
 - Link to GitHub
 - Link to website of the package
+- Link  to Bundlephobia
 - The link are always visible as CodeLens
 
 ## Release Notes
+
+### 0.3.0
+
+- Add Bundlephobia link for the packages
 
 ### 0.2.1
 

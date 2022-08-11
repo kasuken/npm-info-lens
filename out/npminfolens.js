@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.clearUrl = exports.buildCodeLens = exports.buildPackageName = exports.getPackageInfoFromNPMRegistry = exports.openLink = void 0;
+exports.clearUrl = exports.buildLinks = exports.buildPackageName = exports.getPackageInfoFromNPMRegistry = exports.openLink = void 0;
 const vscode = require("vscode");
 const node_fetch_1 = require("node-fetch");
 const typescript_1 = require("typescript");
@@ -59,7 +59,7 @@ function buildPackageName(node, document) {
     };
 }
 exports.buildPackageName = buildPackageName;
-function buildCodeLens(importTextLine, packageName) {
+function buildLinks(importTextLine, packageName) {
     const codeLensRange = importTextLine.range;
     return [
         new vscode.CodeLens(codeLensRange, {
@@ -77,9 +77,14 @@ function buildCodeLens(importTextLine, packageName) {
             command: "openPackageDetails",
             arguments: [packageName, "website"],
         }),
+        new vscode.CodeLens(codeLensRange, {
+            title: `BundlePhobia`,
+            command: "openPackageDetails",
+            arguments: [packageName, "bundlephobia"],
+        }),
     ];
 }
-exports.buildCodeLens = buildCodeLens;
+exports.buildLinks = buildLinks;
 function clearUrl(url) {
     return url.replace("git+", "").replace(".git", "");
 }

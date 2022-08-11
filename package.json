@@ -2,7 +2,7 @@
   "name": "npm-info-lens",
   "displayName": "NPM Info Lens",
   "description": "a Visual Studio Code extension that shows additional info for NPM packages directly in your source file",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "publisher": "emanuelebartolesi",
   "icon": "icon.png",
   "repository": {

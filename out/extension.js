@@ -14,7 +14,7 @@ function activate(context) {
             return nodes
                 .map((node) => (0, npminfolens_1.buildPackageName)(node, document))
                 .filter(({ packageName }) => packageName !== "")
-                .map(({ importLineText, packageName }) => (0, npminfolens_1.buildCodeLens)(importLineText, packageName))
+                .map(({ importLineText, packageName }) => (0, npminfolens_1.buildLinks)(importLineText, packageName))
                 .flat();
         },
     });
@@ -37,6 +37,9 @@ function activate(context) {
                 return;
             }
             (0, npminfolens_1.openLink)(vscode.Uri.parse((0, npminfolens_1.clearUrl)(packageDetails.homepage)));
+        }
+        if (destination === "bundlephobia") {
+            (0, npminfolens_1.openLink)(vscode.Uri.parse(`https://bundlephobia.com/package/${packageName}`));
         }
         vscode.window.showInformationMessage("Check your browser");
     });
