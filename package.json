@@ -31,7 +31,6 @@
     "lint": "eslint src --ext ts"
   },
   "devDependencies": {
-    "@phenomnomnominal/tsquery": "^5.0.0",
     "@types/glob": "^7.2.0",
     "@types/node": "16.x",
     "@types/node-fetch": "^2.6.2",
@@ -44,6 +43,7 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
+    "@phenomnomnominal/tsquery": "^5.0.0",
     "node-fetch": "^2.6.1"
   }
 }
